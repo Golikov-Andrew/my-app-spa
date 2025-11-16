@@ -1,41 +1,29 @@
-import { shopPages } from "../../../siteConfig";
-import { useAppDispatch } from "../../../app/hooks";
-import type { setCurrentShopPage } from "../../../app/slices/sitePagesSlice";
+import { useAppSelector } from "../../../app/hooks";
+import type { RootState } from "../../../app/store";
+import MyNavButton from "./MyNavButton";
 
-type NavigationProps = {
-  currentShopPage: shopPages;
-  onClick: typeof setCurrentShopPage;
-};
+function Navigation() {
+  const userToken = useAppSelector(
+    (state: RootState) => state.auth.accessToken
+  );
 
-function Navigation({ currentShopPage, onClick }: NavigationProps) {
-  const dispatch = useAppDispatch();
   return (
     <div className="navigation container-fluid m-2 p-2 pt-3 d-flex align-items-center">
-      <div className="row">
-        <div className="col-6">
-          <button
-            className={
-              currentShopPage === shopPages.HOMEPAGE
-                ? "btn btn-danger"
-                : "btn btn-outline-danger"
-            }
-            onClick={()=>{dispatch(onClick(shopPages.HOMEPAGE))}}
-          >
-            Homepage
-          </button>
-        </div>
-        <div className="col-6">
-          <button
-            className={
-              currentShopPage === shopPages.CATALOG
-                ? "btn btn-danger"
-                : "btn btn-outline-danger"
-            }
-            onClick={()=>{dispatch(onClick(shopPages.CATALOG))}}
-          >
-            Catalog
-          </button>
-        </div>
+      <div className="row container-fluid">
+        <MyNavButton url="/" navTitle="Homepage" />
+        <MyNavButton url="catalog" navTitle="Catalog" />
+        {userToken === null && (
+          <>
+            <MyNavButton url="login" navTitle="Login" />
+            <MyNavButton url="register" navTitle="Register" />
+          </>
+        )}
+        {userToken !== null && (
+          <>
+            <MyNavButton url="logout" navTitle="Logout" />
+            <MyNavButton url="account" navTitle="Account" />
+          </>
+        )}
       </div>
     </div>
   );

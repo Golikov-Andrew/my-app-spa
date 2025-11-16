@@ -2,10 +2,11 @@ import ProductList from "../../ProductList/ProductList";
 import Pagination from "../../Pagination/Pagination";
 import { useEffect } from "react";
 import type { Product } from "../../../types/Product";
-import {type setCurrentCatalogPage} from "../../../app/slices/catalogSlice";
+import { type setCurrentCatalogPage } from "../../../app/slices/catalogSlice";
 import type { RootState } from "../../../app/store";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { fetchProducts } from "../../../app/catalogThunks";
+import Title from "../Title/Title";
 
 type CatalogProps = {
   page: number;
@@ -25,19 +26,31 @@ function Catalog({ page, switchCatalogPage }: CatalogProps) {
     dispatch(fetchProducts({ page }));
   }, [page, dispatch]);
 
-  if (loading) return <div className="catalog d-flex justify-content-center m-4">Подождите загрузки продуктов...</div>;
+  if (loading)
+    return (
+      <div className="catalog d-flex justify-content-center m-4">
+        Подождите загрузки продуктов...
+      </div>
+    );
   if (error)
-    return <div className="catalog d-flex justify-content-center m-4">Во время продуктов произошла ошибка: {error}</div>;
+    return (
+      <div className="catalog d-flex justify-content-center m-4">
+        Во время продуктов произошла ошибка: {error}
+      </div>
+    );
 
   return (
-    <div className="catalog">
-      <Pagination
-        currentPage={page}
-        totalPages={totalPages}
-        switchCatalogPage={switchCatalogPage}
-      />
-      <ProductList products={products} />
-    </div>
+    <>
+      <Title text="Каталог"/>
+      <div className="catalog">
+        <Pagination
+          currentPage={page}
+          totalPages={totalPages}
+          switchCatalogPage={switchCatalogPage}
+        />
+        <ProductList products={products} />
+      </div>
+    </>
   );
 }
 

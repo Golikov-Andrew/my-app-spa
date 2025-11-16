@@ -1,32 +1,38 @@
+import { Route, Routes } from "react-router-dom";
 import type { setCurrentCatalogPage } from "../../app/slices/catalogSlice";
-import { shopPages } from "../../siteConfig";
+
 import Catalog from "./Catalog/Catalog";
 import Homepage from "./Homepage/Homepage";
-import Title from "./Title/Title";
+
+import LoginForm from "./Auth/Login/LoginForm";
+import Register from "./Auth/Register/RegisterForm";
+import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
+import Account from "./Account/Account";
+import Logout from "./Auth/Logout/Logout";
 
 type PageContentProps = {
-  currentShopPage: string;
   currentCatalogPage: number;
   switchCatalogPage: typeof setCurrentCatalogPage;
 };
 
 function PageContent({
-  currentShopPage,
   currentCatalogPage,
-  switchCatalogPage
+  switchCatalogPage,
 }: PageContentProps) {
-  let content;
-  if (currentShopPage === shopPages.HOMEPAGE) {
-    content = <Homepage />;
-  } else if (currentShopPage === shopPages.CATALOG) {
-    content = <Catalog page={currentCatalogPage} switchCatalogPage={switchCatalogPage}/>;
-  }
 
   return (
-    <div className="page-content container-fluid mb-5 pb-5">
-      <Title text={currentShopPage} />
-      {content}
-    </div>
+    <>
+      <div className="page-content container-fluid mb-5 pb-5">
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="catalog" element={ <Catalog page={currentCatalogPage} switchCatalogPage={switchCatalogPage} />}/>
+          <Route path="login" element={<LoginForm />} />
+          <Route path="register" element={<Register />} />
+          <Route path="account" element={<PrivateRoute><Account /></PrivateRoute>} />
+          <Route path="logout" element={<PrivateRoute><Logout /></PrivateRoute>} />
+        </Routes>
+      </div>
+    </>
   );
 }
 

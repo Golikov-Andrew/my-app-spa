@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import sitePagesReducer from './slices/sitePagesSlice';
 import catalogReducer from './slices/catalogSlice';
+import authReducer from './slices/authSlice';
 
 export const store = configureStore({
   reducer: {
-    sitePages: sitePagesReducer,
-    catalog: catalogReducer
+    catalog: catalogReducer,
+    auth: authReducer
   },
 })
 
