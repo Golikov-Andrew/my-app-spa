@@ -1,4 +1,5 @@
 .logo {
-    /* width: 64px; */
-    height: 64px;
+    width: 100%;
+    max-width: 332px;
+    height: auto;
 }

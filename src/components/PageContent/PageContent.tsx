@@ -9,6 +9,7 @@ import Register from "./Auth/Register/RegisterForm";
 import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
 import Account from "./Account/Account";
 import Logout from "./Auth/Logout/Logout";
+import "./PageContent.css";
 
 type PageContentProps = {
   currentCatalogPage: number;
@@ -22,7 +23,7 @@ function PageContent({
 
   return (
     <>
-      <div className="page-content container-fluid mb-5 pb-5">
+      <div className="page-content container-fluid mb-5 pt-2 pb-5">
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="catalog" element={ <Catalog page={currentCatalogPage} switchCatalogPage={switchCatalogPage} />}/>

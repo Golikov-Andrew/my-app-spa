@@ -4,8 +4,8 @@ import Navigation from "./Navigation/Navigation";
 
 function Header() {
   return (
-    <header className="navigation container-fluid">
-      <div className="row">
+    <header className="navigation container-fluid fixed-top bg-white">
+      <div className="row align-items-center">
         <div className="col-3">
           <Logo />
         </div>

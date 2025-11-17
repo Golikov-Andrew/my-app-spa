@@ -18,6 +18,7 @@ export interface authState {
   username: string | null;
   accessToken: string | null;
   refreshToken: string | null;
+  isUserAdmin: boolean;
   registerFormData: RegisterFormData;
   loginFormData: LoginFormData;
   isRedirectToLogin: boolean;
@@ -30,6 +31,7 @@ const initialState: authState = {
   username: null,
   accessToken: null,
   refreshToken: null,
+  isUserAdmin: false,
   registerFormData: {
     username: "",
     email: "",

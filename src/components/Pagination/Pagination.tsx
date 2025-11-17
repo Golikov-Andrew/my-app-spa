@@ -26,7 +26,7 @@ function Pagination({
           <li key={page}>
             <button
               className={
-                currentPage === page ? "page-link btn link-danger btn-danger" : "page-link btn link-danger"
+                currentPage === page ? "btn btn-danger" : "page-link btn link-danger"
               }
               onClick={()=>{dispatch(switchCatalogPage(page)) }}
             >

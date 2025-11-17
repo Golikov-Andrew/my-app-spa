@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import "./MyNavButton.css";
 
 type MyNavButtonProps = {
   url: string;
@@ -8,16 +9,14 @@ type MyNavButtonProps = {
 
 function MyNavButton({url, navTitle}: MyNavButtonProps) {
   return (
-    <div className="col-3 text-center">
       <NavLink
         to={url}
         className={({ isActive }) =>
-          isActive ? "btn btn-danger" : "btn btn-outline-danger"
+          isActive ? "btn my-nav-btn px-0 btn-danger text-center" : "btn my-nav-btn px-0 btn-outline-danger text-center"
         }
       >
         {navTitle}
       </NavLink>
-    </div>
   );
 }
 

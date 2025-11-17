@@ -48,7 +48,7 @@ const RegisterForm = () => {
   }, [navigate, isRedirectToLogin]);
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-3">
       <div className="row justify-content-center">
         <div className="col-md-6">
           <h2 className="mb-4">Регистрация</h2>
@@ -100,7 +100,7 @@ const RegisterForm = () => {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button variant="danger" type="submit">
               Зарегистрироваться
             </Button>
           </Form>
