@@ -1,9 +1,8 @@
-
 export interface Product {
   id: number;
   title: string;
   description: string;
-  image_url: string;
+  image_url: string | undefined;
   black_price?: number;
   final_price: number;
   quantity: number;
