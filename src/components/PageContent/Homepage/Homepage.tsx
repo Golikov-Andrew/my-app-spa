@@ -1,14 +1,17 @@
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import type { RootState } from "../../../app/store";
+import { getShopDetails } from "../../../app/shopThunks";
+import parse from "html-react-parser";
+
 function Homepage() {
+  const description = useAppSelector(
+    (state: RootState) => state.shop.description
+  );
+
   return (
     <div className="homepage text-center m-4 col-12 col-sm-10 col-md-8 col-lg-6 mx-auto">
-      Добро пожаловать в&nbsp;мир передовых технологий и&nbsp;элегантного
-      дизайна! У&nbsp;нас&nbsp;вы&nbsp;найдёте актуальные модели смартфонов
-      Huawei — сочетание инновационных разработок, премиального качества
-      и&nbsp;продуманной эргономики. От&nbsp;мощных флагманов с&nbsp;выдающейся
-      камерой до&nbsp;сбалансированных устройств среднего класса — каждый
-      смартфон Huawei создан, чтобы отвечать вашим потребностям
-      и&nbsp;превосходить ожидания. Выбирайте своё&nbsp;идеальное устройство
-      уже&nbsp;сегодня!
+      {parse(description)}
     </div>
   );
 }

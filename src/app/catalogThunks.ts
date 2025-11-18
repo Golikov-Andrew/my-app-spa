@@ -6,7 +6,7 @@ import {
   setTotalPages,
   setError,
 } from "./slices/catalogSlice";
-import { PRODUCTS_PER_PAGE } from "../siteConfig";
+import { BACKEND_URL, PRODUCTS_PER_PAGE } from "../siteConfig";
 import axios from "axios";
 
 interface FetchProductsArgs {
@@ -24,7 +24,7 @@ export const fetchProducts = createAsyncThunk<
   async (query_params: FetchProductsArgs, { dispatch, rejectWithValue }) => {
     dispatch(setLoading());
     axios
-      .get(`http://localhost:62417/api/v1/products/`, {
+      .get(`${BACKEND_URL}products/`, {
         params: {
           page: query_params.page,
           final_price__gte: query_params.priceFrom,

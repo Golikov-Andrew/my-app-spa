@@ -61,6 +61,7 @@ export const authSlice = createSlice({
       state.username = action.payload.username;
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
+      state.isUserAdmin = action.payload.isUserAdmin;
       localStorage.setItem('token', action.payload.accessToken);
     },
     registerFailure: (state, action) => {

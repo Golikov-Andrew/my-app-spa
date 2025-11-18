@@ -32,7 +32,7 @@ function LeftSideBar() {
   };
 
   return (
-    <div>
+    <div className="px-4 position-fixed start-0 col-3 d-flex flex-column">
       <h4>Фильтры</h4>
       
       <Form onSubmit={handleSubmit}>

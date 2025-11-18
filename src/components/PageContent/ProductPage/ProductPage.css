@@ -1,0 +1,39 @@
+.product-card-image img {
+  width: 100%;
+  max-width: 480px;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .product-page {
+    font-size: 14px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .product-page {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .product-page {
+    font-size: 18px;
+  }
+}
+@media (min-width: 1400px) {
+  .product-page {
+    font-size: 20px;
+  }
+}
+
+.product-title {
+  font-size: 1.2em;
+}
+.product-final-price {
+  font-size: 1.8em;
+}
+.product-black-price {
+  font-size: 1.2em;
+}
+.product-description {
+  font-size: 1em;
+}
+

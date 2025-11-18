@@ -1,0 +1,15 @@
+.wishlist-btn {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  border: 2px solid red;
+  top: 12px;
+  right: 12px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+.wishlist-btn:hover,
+.wishlist-btn.wishlist-btn-active {
+  background-color: red;
+}

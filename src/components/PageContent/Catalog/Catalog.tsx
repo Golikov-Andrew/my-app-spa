@@ -55,13 +55,15 @@ function Catalog({ page, switchCatalogPage }: CatalogProps) {
               </div>
             )}
             {tempMessage === null && (
-              <><Pagination
-                currentPage={page}
-                totalPages={totalPages}
-                switchCatalogPage={switchCatalogPage} /><ProductList products={products} /></>
+              <>
+                <Pagination
+                  currentPage={page}
+                  totalPages={totalPages}
+                  switchCatalogPage={switchCatalogPage}
+                />
+                <ProductList products={products} />
+              </>
             )}
-
-            
           </div>
         </div>
       </div>

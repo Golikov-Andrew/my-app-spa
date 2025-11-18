@@ -34,7 +34,6 @@ const LoginForm = () => {
     dispatch(loginUser(loginFormData)).then((val) => {
       if (val.payload === true) {
         dispatch(setRedirectToAccount(true));
-        console.log(val.payload);
       }
     });
   };

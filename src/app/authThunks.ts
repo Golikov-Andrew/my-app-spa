@@ -10,6 +10,8 @@ import {
   loginSuccess,
 } from "./slices/authSlice";
 import axios from "axios";
+import { BACKEND_URL } from "../siteConfig";
+import { getWishListProducts } from "./wishlistThunks";
 
 export const registerUser = createAsyncThunk<
   boolean | string,
@@ -21,7 +23,7 @@ export const registerUser = createAsyncThunk<
     try {
       dispatch(registerStart());
       const response = await axios.post(
-        `http://localhost:62417/api/v1/users/register/`,
+        `${BACKEND_URL}users/register/`,
         {
           email: formData.email,
           password: formData.password,
@@ -57,7 +59,7 @@ export const loginUser = createAsyncThunk<
     try {
       dispatch(registerStart());
       const response = await axios.post(
-        `http://localhost:62417/api/v1/token/`,
+        `${BACKEND_URL}token/`,
         {
           username: formData.username,
           password: formData.password,
@@ -73,8 +75,10 @@ export const loginUser = createAsyncThunk<
           accessToken: data.access,
           refreshToken: data.refresh,
           username: formData.username,
+          isUserAdmin: data.is_admin
         })
       );
+      dispatch(getWishListProducts({token: data.access}));
       alert(`Клиент ${formData.username} успешно залогинен!`);
       dispatch(clearLoginFormData({}));
       return true;

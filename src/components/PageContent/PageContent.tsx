@@ -10,6 +10,8 @@ import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
 import Account from "./Account/Account";
 import Logout from "./Auth/Logout/Logout";
 import "./PageContent.css";
+import ProductPage from "./ProductPage/ProductPage";
+import WishList from "./WishList/WishList";
 
 type PageContentProps = {
   currentCatalogPage: number;
@@ -27,10 +29,12 @@ function PageContent({
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="catalog" element={ <Catalog page={currentCatalogPage} switchCatalogPage={switchCatalogPage} />}/>
+          <Route path="product/:id" element={<ProductPage />} />
           <Route path="login" element={<LoginForm />} />
           <Route path="register" element={<Register />} />
           <Route path="account" element={<PrivateRoute><Account /></PrivateRoute>} />
           <Route path="logout" element={<PrivateRoute><Logout /></PrivateRoute>} />
+          <Route path="wishlist" element={<PrivateRoute><WishList /></PrivateRoute>} />
         </Routes>
       </div>
     </>
