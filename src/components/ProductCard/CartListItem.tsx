@@ -37,6 +37,7 @@ function CartListItem({ product }: ProductCardProps) {
         <QtyChangeWidget
           productId={product.id}
           qty={product.quantity}
+          page="cart"
         ></QtyChangeWidget>
         
       </div>

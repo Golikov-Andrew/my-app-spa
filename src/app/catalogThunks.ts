@@ -5,6 +5,7 @@ import {
   setProducts,
   setTotalPages,
   setError,
+  setProductQty,
 } from "./slices/catalogSlice";
 import { BACKEND_URL, PRODUCTS_PER_PAGE } from "../siteConfig";
 import axios from "axios";
@@ -43,6 +44,40 @@ export const fetchProducts = createAsyncThunk<
         } else {
           dispatch(setError(response.message));
         }
+      });
+  }
+);
+
+interface changeAdminProductQtyArgs {
+  token: string | null;
+  productId: number;
+  isIncrement: boolean;
+}
+
+export const changeAdminProductQtyThunk = createAsyncThunk<
+  void,
+  changeAdminProductQtyArgs,
+  { rejectValue: string }
+>(
+  "product/changeQty",
+  async (
+    { token, productId, isIncrement }: changeAdminProductQtyArgs,
+    { dispatch }
+  ) => {
+    axios
+      .patch(
+        `${BACKEND_URL}shop-admin/product/change-qty/`,
+        {
+          product_id: productId,
+          is_increment: isIncrement,
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      .then((response) => {
+        dispatch(setProductQty(response.data));
+      })
+      .catch((response) => {
+        console.error(response);
       });
   }
 );

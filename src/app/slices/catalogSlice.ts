@@ -25,7 +25,7 @@ const initialState: catalogState = {
   error: null,
   filtersForm: {
     priceFrom: 0,
-    priceTo: 30000
+    priceTo: 30000,
   },
 };
 
@@ -54,7 +54,16 @@ export const catalogSlice = createSlice({
     setFiltersFormData: (state, action) => {
       state.filtersForm = action.payload;
     },
-  }
+    setProductQty: (state, action: PayloadAction<Product>) => {
+      for (let i = state.products.length - 1; i >= 0; i--) {
+        const product = state.products[i];
+        if (product && product.id === action.payload.id) {
+          product.quantity = action.payload.quantity;
+          break;
+        }
+      }
+    },
+  },
 });
 
 export const {
@@ -63,6 +72,7 @@ export const {
   setTotalPages,
   setLoading,
   setError,
-  setFiltersFormData
+  setFiltersFormData,
+  setProductQty,
 } = catalogSlice.actions;
 export default catalogSlice.reducer;

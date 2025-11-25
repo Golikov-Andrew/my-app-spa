@@ -19,6 +19,14 @@ export interface CartItem {
   qty: number;
 }
 
+export interface OrderItem {
+  product: Product;
+  qty: number;
+  blackPrice: number;
+  finalPrice: number;
+  totalCost: number;
+}
+
 export interface Order {
   id: number;
   orderStatus: string;
@@ -31,4 +39,5 @@ export interface Order {
   createdAt: string;
   updatedAt: string;
   isOrderPaid: boolean;
+  orderItems: OrderItem[];
 }

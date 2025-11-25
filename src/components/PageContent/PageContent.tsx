@@ -14,6 +14,10 @@ import ProductPage from "./ProductPage/ProductPage";
 import WishList from "./WishList/WishList";
 import Cart from "./Cart/Cart";
 import Orders from "./Orders/Orders";
+import OrderPage from "./OrderPage/OrderPage";
+import AdminOrders from "./Orders/AdminOrders";
+import AdminShop from "./Admin/Shop/AdminShop";
+import AdminProducts from "./Admin/Shop/AdminProducts";
 
 type PageContentProps = {
   currentCatalogPage: number;
@@ -39,6 +43,10 @@ function PageContent({
           <Route path="wishlist" element={<PrivateRoute><WishList /></PrivateRoute>} />
           <Route path="cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
           <Route path="orders" element={<PrivateRoute><Orders /></PrivateRoute>} />
+          <Route path="admin/orders" element={<PrivateRoute><AdminOrders /></PrivateRoute>} />
+          <Route path="admin/shop" element={<PrivateRoute><AdminShop /></PrivateRoute>} />
+          <Route path="admin/products" element={<PrivateRoute><AdminProducts page={currentCatalogPage} switchCatalogPage={switchCatalogPage} /></PrivateRoute>} />
+          <Route path="order/:id" element={<PrivateRoute><OrderPage /></PrivateRoute>} />
         </Routes>
       </div>
     </>

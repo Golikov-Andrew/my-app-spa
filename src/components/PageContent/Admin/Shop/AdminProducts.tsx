@@ -1,20 +1,20 @@
-import ProductList from "../../ProductList/ProductList";
-import Pagination from "../../Pagination/Pagination";
 import { useEffect } from "react";
-import type { Product } from "../../../types/Product";
-import { type setCurrentCatalogPage } from "../../../app/slices/catalogSlice";
-import type { RootState } from "../../../app/store";
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { fetchProducts } from "../../../app/catalogThunks";
-import Title from "../Title/Title";
-import LeftSideBar from "../../LeftSideBar/LeftSideBar";
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
+import type { setCurrentCatalogPage } from "../../../../app/slices/catalogSlice";
+import type { RootState } from "../../../../app/store";
+import { fetchProducts } from "../../../../app/catalogThunks";
+import Title from "../../Title/Title";
+import LeftSideBar from "../../../LeftSideBar/LeftSideBar";
 
-type CatalogProps = {
+import ProductList from "../../../ProductList/ProductList";
+import Pagination from "../../../Pagination/Pagination";
+
+type Props = {
   page: number;
   switchCatalogPage: typeof setCurrentCatalogPage;
 };
 
-function Catalog({ page, switchCatalogPage }: CatalogProps) {
+function AdminProducts({ page, switchCatalogPage }: Props) {
   const totalPages = useAppSelector(
     (state: RootState) => state.catalog.totalPages
   );
@@ -40,7 +40,7 @@ function Catalog({ page, switchCatalogPage }: CatalogProps) {
 
   return (
     <>
-      <Title text="Каталог" />
+      <Title text="Админка - Товары" />
       <div className="catalog container-fluid">
         <div className="row">
           <div className="col-3 d-flex flex-column">
@@ -59,7 +59,7 @@ function Catalog({ page, switchCatalogPage }: CatalogProps) {
                   totalPages={totalPages}
                   switchCatalogPage={switchCatalogPage}
                 />
-                <ProductList products={products} hideZeroProduct={true}/>
+                <ProductList products={products} isUserAdmin={true} />
               </>
             )}
           </div>
@@ -69,5 +69,4 @@ function Catalog({ page, switchCatalogPage }: CatalogProps) {
   );
 }
 
-export type { Product };
-export default Catalog;
+export default AdminProducts;

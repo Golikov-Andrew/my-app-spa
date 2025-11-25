@@ -14,6 +14,7 @@ function App() {
     (state: RootState) => state.catalog.currentCatalogPage
   );
   const shopTitle = useAppSelector((state: RootState) => state.shop.title);
+  
 
   const dispatch = useAppDispatch();
 

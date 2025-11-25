@@ -79,7 +79,7 @@ export const loginUser = createAsyncThunk<
           isUserAdmin: data.is_admin
         })
       );
-      dispatch(getWishListProducts({token: data.access}));
+      // dispatch(getWishListProducts({token: data.access}));
       
       // alert(`Клиент ${formData.username} успешно залогинен!`);
       dispatch(clearLoginFormData({}));

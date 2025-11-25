@@ -5,17 +5,19 @@ import WishlistButton from "./WishlistButton/WishlistButton";
 import { Button, Form } from "react-bootstrap";
 import { useAppDispatch } from "../../app/hooks";
 import AddToCartButton from "./AddToCartButton/AddToCartButton";
+import QtyChangeWidget from "./QtyChangeWidget/QtyChangeWidget";
 
 type ProductCardProps = {
   product: Product;
   isUserAuthenticated: boolean;
+  isUserAdmin?: boolean;
 };
 
-
-
-function ProductCard({ product, isUserAuthenticated }: ProductCardProps) {
-  
-  
+function ProductCard({
+  product,
+  isUserAuthenticated,
+  isUserAdmin,
+}: ProductCardProps) {
   return (
     <div className="product-card">
       <div className="product-card-image">
@@ -32,7 +34,10 @@ function ProductCard({ product, isUserAuthenticated }: ProductCardProps) {
           <s>{product.black_price} &#8381;</s>
         </div>
       </div>
-      <Link to={`/product/${product.id}`} className="link-danger link-underline-opacity-25 link-underline-opacity-100-hover">
+      <Link
+        to={`/product/${product.id}`}
+        className="link-danger link-underline-opacity-25 link-underline-opacity-100-hover"
+      >
         <div className="product-card-title fs-14 fw-semibold">
           {product.title}
         </div>
@@ -41,12 +46,24 @@ function ProductCard({ product, isUserAuthenticated }: ProductCardProps) {
       <div className="product-card-description fs-12">
         {product.description}
       </div>
+      {!isUserAdmin && (
+        <div className="product-card-button fs-12">
+          {isUserAuthenticated && (
+            <AddToCartButton productId={product.id}></AddToCartButton>
+          )}
+        </div>
+      )}
 
-      <div className="product-card-button fs-12">
-        {isUserAuthenticated && (
-          <AddToCartButton productId={product.id}></AddToCartButton>
-        )}
-      </div>
+      {isUserAdmin && (
+        <>
+          <div>Кол-во товара: </div>
+          <QtyChangeWidget
+            productId={product.id}
+            qty={product.quantity}
+            page={"products"}
+          ></QtyChangeWidget>
+        </>
+      )}
     </div>
   );
 }

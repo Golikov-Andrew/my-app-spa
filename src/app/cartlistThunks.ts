@@ -150,6 +150,7 @@ export const createNewOrderThunk = createAsyncThunk<
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
+        
         dispatch(setProducts([]));
         dispatch(resetNewOrderForm());
         dispatch(
@@ -164,14 +165,19 @@ export const createNewOrderThunk = createAsyncThunk<
         }, 5000);
       })
       .catch((response) => {
+        
         console.error(response);
+        
         dispatch(
           setLoading({
             loading: false,
             preloaderMessage: null,
-            postloaderMessage: response,
+            postloaderMessage: response.response.data.error,
           })
         );
+        setTimeout(()=>{
+          dispatch(resetLoader());
+        }, 5000);
       });
   }
 );
