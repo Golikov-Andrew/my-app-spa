@@ -19,13 +19,13 @@ function LeftSideBar() {
       (state: RootState) => state.catalog.currentCatalogPage
     );
 
-  const handleChangeForm = (e: any) => {
+  const handleChangeForm = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(
       setFiltersFormData({ ...formData, [e.target.name]: +e.target.value })
     );
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     dispatch(fetchProducts({ ...formData, page }));

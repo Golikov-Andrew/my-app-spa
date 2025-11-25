@@ -22,13 +22,13 @@ const LoginForm = () => {
     (state: RootState) => state.auth.isRedirectToAccount
   );
 
-  const handleChangeForm = (e: any) => {
+  const handleChangeForm = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(
       setLoginFormData({ ...loginFormData, [e.target.name]: e.target.value })
     );
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     dispatch(loginUser(loginFormData)).then((val) => {

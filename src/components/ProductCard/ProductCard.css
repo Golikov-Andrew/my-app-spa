@@ -8,9 +8,19 @@
 .product-card-image {
   position: relative;
   min-height: 216px;
-  
 }
 
+.product-card-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-card-button {
+  margin-top: 4px;
+}
 .product-card-image img {
   width: 200px;
   height: auto;

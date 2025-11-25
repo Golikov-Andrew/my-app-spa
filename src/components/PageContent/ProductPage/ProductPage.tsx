@@ -6,6 +6,7 @@ import WishlistButton from "../../ProductCard/WishlistButton/WishlistButton";
 import { useEffect } from "react";
 import "./ProductPage.css";
 import { Button } from "react-bootstrap";
+import AddToCartButton from "../../ProductCard/AddToCartButton/AddToCartButton";
 
 function ProductPage() {
   const { id } = useParams();
@@ -52,9 +53,7 @@ function ProductPage() {
             </div>
             <div>
               {isUserAuthenticated && (
-                <Button variant="danger" type="submit">
-                  Положить в корзину
-                </Button>
+                <AddToCartButton productId={product.id}></AddToCartButton>
               )}
             </div>
           </div>

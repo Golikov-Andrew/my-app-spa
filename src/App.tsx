@@ -18,7 +18,7 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getShopDetails({ shopId: 2 }));
+    dispatch(getShopDetails({ shopId: 1 }));
   }, [shopTitle]);
 
   return (

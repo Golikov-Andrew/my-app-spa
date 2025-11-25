@@ -2,13 +2,20 @@ import { Link, NavLink } from "react-router-dom";
 import type { Product } from "../../types/Product";
 import "./ProductCard.css";
 import WishlistButton from "./WishlistButton/WishlistButton";
+import { Button, Form } from "react-bootstrap";
+import { useAppDispatch } from "../../app/hooks";
+import AddToCartButton from "./AddToCartButton/AddToCartButton";
 
 type ProductCardProps = {
   product: Product;
   isUserAuthenticated: boolean;
 };
 
+
+
 function ProductCard({ product, isUserAuthenticated }: ProductCardProps) {
+  
+  
   return (
     <div className="product-card">
       <div className="product-card-image">
@@ -33,6 +40,12 @@ function ProductCard({ product, isUserAuthenticated }: ProductCardProps) {
 
       <div className="product-card-description fs-12">
         {product.description}
+      </div>
+
+      <div className="product-card-button fs-12">
+        {isUserAuthenticated && (
+          <AddToCartButton productId={product.id}></AddToCartButton>
+        )}
       </div>
     </div>
   );

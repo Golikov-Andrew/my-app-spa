@@ -36,9 +36,7 @@ function Catalog({ page, switchCatalogPage }: CatalogProps) {
   let tempMessage = null;
 
   if (loading) tempMessage = "Подождите загрузки продуктов...";
-  // return <div className="catalog d-flex justify-content-center m-4"></div>;
   if (error) tempMessage = `Во время загрузки произошла ошибка: ${error}`;
-  // return <div className="catalog d-flex justify-content-center m-4"></div>;
 
   return (
     <>

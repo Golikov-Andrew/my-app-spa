@@ -13,7 +13,7 @@ function WishList() {
       <Title text="Избранное" />
       <div className="catalog container-fluid">
         <div className="row">
-          <div className="col-9">
+          <div className="col-9 m-auto">
             <ProductList products={products} />
           </div>
         </div>

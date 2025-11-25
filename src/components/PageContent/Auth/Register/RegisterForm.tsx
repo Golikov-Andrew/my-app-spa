@@ -20,13 +20,13 @@ const RegisterForm = () => {
     (state: RootState) => state.auth.isRedirectToLogin
   );
 
-  const handleChangeForm = (e: any) => {
+  const handleChangeForm = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(
       setRegisterFormData({ ...formData, [e.target.name]: e.target.value })
     );
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {

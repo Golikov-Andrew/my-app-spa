@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { Product } from "../../types/Product";
-import { fetchProducts } from "../catalogThunks";
+// import { fetchProducts } from "../catalogThunks";
 
 export interface FiltersForm {
   priceFrom: number;
@@ -54,23 +54,7 @@ export const catalogSlice = createSlice({
     setFiltersFormData: (state, action) => {
       state.filtersForm = action.payload;
     },
-  },
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addCase(fetchProducts.pending, (state) => {
-  //       state.loading = true;
-  //       state.error = null;
-  //     })
-  //     .addCase(fetchProducts.fulfilled, (state, action) => {
-  //       state.products = action.payload;
-  //       state.loading = false;
-  //       state.error = null;
-  //     })
-  //     .addCase(fetchProducts.rejected, (state, action) => {
-  //       state.error = action.payload ?? "Ошибка загрузки";
-  //       state.loading = false;
-  //     });
-  // },
+  }
 });
 
 export const {

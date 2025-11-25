@@ -21,7 +21,6 @@ export const wishlistSlice = createSlice({
     },
     removeProductFromWishList: (state, action) => {
       for (let i = state.products.length - 1; i >= 0; i--) {
-        debugger;
         const product = state.products[i];
         if (product && product.id === action.payload) {
           state.products.splice(i, 1);
