@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import type { Order } from "../../types/Product";
+import type { Order } from "../../types/Order";
 import "./OrdersListItem.css";
 
 type Props = {

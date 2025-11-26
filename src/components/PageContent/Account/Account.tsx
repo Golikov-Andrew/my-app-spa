@@ -9,6 +9,7 @@ function Account() {
   const dispatch = useAppDispatch();
 
   const username = useAppSelector((state: RootState) => state.auth.username)
+  const isUserAdmin = useAppSelector((state: RootState) => state.auth.isUserAdmin)
   dispatch(setRedirectToAccount(false));
   
   return (
@@ -17,6 +18,9 @@ function Account() {
       <div className="account d-flex justify-content-center m-4">
         Здравствуйте, {username}!
       </div>
+      {isUserAdmin && <div className="account d-flex justify-content-center m-4">
+        Вы имеете права администратора!
+      </div>}
     </>
   );
 }

@@ -1,10 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { BACKEND_URL } from "../siteConfig";
-import axios, { type AxiosResponse } from "axios";
+import axios from "axios";
 
-import { resetLoader, setLoading } from "./slices/preloaderSlice";
-import type { Order } from "../types/Product";
+import type { Order } from "../types/Order";
 import { setOrders } from "./slices/ordersSlice";
 
 interface getOrdersListArgs {

@@ -16,8 +16,6 @@ function ProductList({
 }: ProductListProps) {
   const isUserAdmin2 = isUserAdmin ?? false;
   const hideZeroProduct2 = hideZeroProduct ?? false;
-  console.log("hideZeroProduct2", hideZeroProduct2);
-  console.log("isUserAdmin2", isUserAdmin2);
 
   const isUserAuthenticated =
     useAppSelector((state: RootState) => state.auth.accessToken) !== null;
@@ -36,14 +34,7 @@ function ProductList({
     } else {
       resultProducts.push(product);
     }
-    // if (isToHideZeroProduct && product.quantity > 0) {
-    //   if(product.id === 6){
-    //     debugger;
-    //   }
-    //   resultProducts.push(product);
-    // } else {
-    //   resultProducts.push(product);
-    // }
+    
   });
 
   return (

@@ -1,12 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import type { RootState } from "../../../app/store";
-import {
-  addProductToCartListThunk,
-  changeCartItemQtyThunk,
-  removeProductFromCartListThunk,
-} from "../../../app/cartlistThunks";
-//import type { CartItem } from "../../../types/Product";
-// import "./AddToCartButton.css";
+import { changeCartItemQtyThunk } from "../../../app/cartlistThunks";
 import { Button } from "react-bootstrap";
 import { changeAdminProductQtyThunk } from "../../../app/catalogThunks";
 
@@ -18,19 +12,7 @@ type QtyChangeWidgetProps = {
 
 function QtyChangeWidget({ productId, qty, page }: QtyChangeWidgetProps) {
   const dispatch = useAppDispatch();
-
-  // const cartlistProducts = useAppSelector(
-  //   (state: RootState) => state.cartlist.products
-  // );
   const token = useAppSelector((state: RootState) => state.auth.accessToken);
-
-  // let isProductExistsInCartList = false;
-  // cartlistProducts.forEach((product) => {
-  //   if (product.id === productId) {
-  //     isProductExistsInCartList = true;
-  //     return;
-  //   }
-  // });
 
   const onClick = (
     evt: React.MouseEvent<HTMLButtonElement>,

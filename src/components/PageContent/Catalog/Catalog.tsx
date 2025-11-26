@@ -31,7 +31,7 @@ function Catalog({ page, switchCatalogPage }: CatalogProps) {
 
   useEffect(() => {
     dispatch(fetchProducts({ page, priceFrom, priceTo }));
-  }, [page, dispatch]);
+  }, [page]);
 
   let tempMessage = null;
 

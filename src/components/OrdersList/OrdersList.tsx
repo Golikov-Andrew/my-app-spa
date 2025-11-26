@@ -1,5 +1,4 @@
-import ProductCard from "../ProductCard/ProductCard";
-import type { Order, Product } from "../../types/Product";
+import type { Order } from "../../types/Order";
 import { useAppSelector } from "../../app/hooks";
 import type { RootState } from "../../app/store";
 import OrdersListListItem from "./OrdersListItem";

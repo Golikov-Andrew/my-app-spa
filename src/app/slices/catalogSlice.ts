@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { Product } from "../../types/Product";
-// import { fetchProducts } from "../catalogThunks";
 
 export interface FiltersForm {
   priceFrom: number;

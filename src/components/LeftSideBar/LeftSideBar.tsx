@@ -6,18 +6,18 @@ import { fetchProducts } from "../../app/catalogThunks";
 
 function LeftSideBar() {
   const dispatch = useAppDispatch();
-   const formData = useAppSelector(
-      (state: RootState) => state.catalog.filtersForm
-    );
-    const priceFrom = useAppSelector(
-      (state: RootState) => state.catalog.filtersForm.priceFrom
-    );
-    const priceTo = useAppSelector(
-      (state: RootState) => state.catalog.filtersForm.priceTo
-    );
-    const page = useAppSelector(
-      (state: RootState) => state.catalog.currentCatalogPage
-    );
+  const formData = useAppSelector(
+    (state: RootState) => state.catalog.filtersForm
+  );
+  const priceFrom = useAppSelector(
+    (state: RootState) => state.catalog.filtersForm.priceFrom
+  );
+  const priceTo = useAppSelector(
+    (state: RootState) => state.catalog.filtersForm.priceTo
+  );
+  const page = useAppSelector(
+    (state: RootState) => state.catalog.currentCatalogPage
+  );
 
   const handleChangeForm = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(
@@ -27,14 +27,13 @@ function LeftSideBar() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     dispatch(fetchProducts({ ...formData, page }));
   };
 
   return (
     <div className="px-4 position-fixed start-0 col-3 d-flex flex-column">
       <h4>Фильтры</h4>
-      
+
       <Form onSubmit={handleSubmit}>
         <Form.Label>Цена от: {priceFrom}</Form.Label>
         <Form.Range
@@ -55,7 +54,7 @@ function LeftSideBar() {
           step="1000"
           name="priceTo"
         />
-        
+
         <Button variant="danger" type="submit">
           Применить
         </Button>

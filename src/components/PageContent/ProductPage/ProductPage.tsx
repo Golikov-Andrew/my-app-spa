@@ -5,7 +5,6 @@ import type { RootState } from "../../../app/store";
 import WishlistButton from "../../ProductCard/WishlistButton/WishlistButton";
 import { useEffect } from "react";
 import "./ProductPage.css";
-import { Button } from "react-bootstrap";
 import AddToCartButton from "../../ProductCard/AddToCartButton/AddToCartButton";
 
 function ProductPage() {
@@ -14,7 +13,6 @@ function ProductPage() {
   const product = useAppSelector(
     (state: RootState) => state.productPage.product
   );
-  //   const product = useAppSelector((state: RootState) => state.productPage);
   const isUserAuthenticated =
     useAppSelector((state: RootState) => state.auth.accessToken) !== null;
 

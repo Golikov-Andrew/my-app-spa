@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
-import type { setCurrentCatalogPage } from "../../../../app/slices/catalogSlice";
-import type { RootState } from "../../../../app/store";
-import { fetchProducts } from "../../../../app/catalogThunks";
-import Title from "../../Title/Title";
-import LeftSideBar from "../../../LeftSideBar/LeftSideBar";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import type { setCurrentCatalogPage } from "../../../app/slices/catalogSlice";
+import type { RootState } from "../../../app/store";
+import { fetchProducts } from "../../../app/catalogThunks";
+import Title from "../Title/Title";
+import LeftSideBar from "../../LeftSideBar/LeftSideBar";
 
-import ProductList from "../../../ProductList/ProductList";
-import Pagination from "../../../Pagination/Pagination";
+import ProductList from "../../ProductList/ProductList";
+import Pagination from "../../Pagination/Pagination";
 
 type Props = {
   page: number;

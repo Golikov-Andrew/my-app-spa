@@ -14,15 +14,6 @@ import './RightSideBar.css';
 function RightSideBar() {
   const dispatch = useAppDispatch();
   const cartForm = useAppSelector((state: RootState) => state.cartlist);
-  // const priceFrom = useAppSelector(
-  //   (state: RootState) => state.catalog.filtersForm.priceFrom
-  // );
-  // const priceTo = useAppSelector(
-  //   (state: RootState) => state.catalog.filtersForm.priceTo
-  // );
-  // const page = useAppSelector(
-  //   (state: RootState) => state.catalog.currentCatalogPage
-  // );
   const token = localStorage.getItem("token");
 
   const onChangeFormTextFields = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +51,6 @@ function RightSideBar() {
 
   return (
     <div className="right-sidebar px-4 position-fixed end-0 col-3 d-flex flex-column text-nowrap">
-      {/* <h4>Оформление заказа</h4> */}
 
       <Form onSubmit={handleSubmit} className="d-flex gap-2 flex-column">
         <Form.Label className="fs-3">

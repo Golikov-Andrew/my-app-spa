@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { Order } from "../../types/Product";
+import type { Order } from "../../types/Order";
 
 export interface OrderPage {
   order: Order;

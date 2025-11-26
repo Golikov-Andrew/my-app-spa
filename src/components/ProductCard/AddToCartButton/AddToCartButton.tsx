@@ -1,7 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import type { RootState } from "../../../app/store";
 import { addProductToCartListThunk, removeProductFromCartListThunk } from "../../../app/cartlistThunks";
-//import type { CartItem } from "../../../types/Product";
 import "./AddToCartButton.css";
 import { Button } from "react-bootstrap";
 

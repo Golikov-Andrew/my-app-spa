@@ -1,7 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import type { RootState } from "../../../app/store";
 import { addProductToWishListThunk, removeProductFromWishListThunk } from "../../../app/wishlistThunks";
-import type { Product } from "../../../types/Product";
 import "./WishlistButton.css";
 
 type WishlistButtonProps = {

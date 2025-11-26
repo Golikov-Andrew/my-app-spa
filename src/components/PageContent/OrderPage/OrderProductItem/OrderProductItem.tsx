@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../../../app/hooks";
-import type { RootState } from "../../../../app/store";
 import type { OrderItem } from "../../../../types/Product";
 
 
@@ -10,9 +8,6 @@ type Props = {
 };
 
 function OrderProductItem({ orderItem }: Props) {
-  
-  // const order = useAppSelector((state: RootState) => state.order.order);
-  
   
   return (
       <div className="order-product-item d-flex gap-4 p-4 mx-auto">

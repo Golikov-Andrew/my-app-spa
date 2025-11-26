@@ -1,7 +1,5 @@
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { useAppSelector } from "../../../app/hooks";
 import type { RootState } from "../../../app/store";
-import { getShopDetails } from "../../../app/shopThunks";
 import parse from "html-react-parser";
 
 function Homepage() {
@@ -11,7 +9,13 @@ function Homepage() {
 
   return (
     <div className="homepage text-center m-4 col-12 col-sm-10 col-md-8 col-lg-6 mx-auto">
-      {parse(description)}
+      <p>{parse(description)}</p>
+
+      <div>
+        <video className="w-100" autoPlay muted loop>
+          <source src="/reason-video1.mp4" type="video/mp4" />
+        </video>
+      </div>
     </div>
   );
 }

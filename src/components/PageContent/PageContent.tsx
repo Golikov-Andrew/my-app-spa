@@ -16,8 +16,8 @@ import Cart from "./Cart/Cart";
 import Orders from "./Orders/Orders";
 import OrderPage from "./OrderPage/OrderPage";
 import AdminOrders from "./Orders/AdminOrders";
-import AdminShop from "./Admin/Shop/AdminShop";
-import AdminProducts from "./Admin/Shop/AdminProducts";
+import AdminShop from "./Admin/AdminShop";
+import AdminProducts from "./Admin/AdminProducts";
 
 type PageContentProps = {
   currentCatalogPage: number;

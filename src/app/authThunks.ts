@@ -11,8 +11,6 @@ import {
 } from "./slices/authSlice";
 import axios from "axios";
 import { BACKEND_URL } from "../siteConfig";
-import { getWishListProducts } from "./wishlistThunks";
-import { getCartListProducts } from "./cartlistThunks";
 
 export const registerUser = createAsyncThunk<
   boolean | string,
@@ -37,7 +35,6 @@ export const registerUser = createAsyncThunk<
       }
       const data = await response.data;
       dispatch(registerSuccess({ username: data.username, email: data.email }));
-      // alert(`Клиент ${data.username} успешно зарегистрирован!`);
       dispatch(clearRegisterFormData({}));
       return true;
     } catch (err) {
@@ -79,9 +76,6 @@ export const loginUser = createAsyncThunk<
           isUserAdmin: data.is_admin
         })
       );
-      // dispatch(getWishListProducts({token: data.access}));
-      
-      // alert(`Клиент ${formData.username} успешно залогинен!`);
       dispatch(clearLoginFormData({}));
       return true;
     } catch (err) {

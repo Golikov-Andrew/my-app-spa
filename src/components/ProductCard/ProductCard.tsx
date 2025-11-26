@@ -1,9 +1,7 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import type { Product } from "../../types/Product";
 import "./ProductCard.css";
 import WishlistButton from "./WishlistButton/WishlistButton";
-import { Button, Form } from "react-bootstrap";
-import { useAppDispatch } from "../../app/hooks";
 import AddToCartButton from "./AddToCartButton/AddToCartButton";
 import QtyChangeWidget from "./QtyChangeWidget/QtyChangeWidget";
 

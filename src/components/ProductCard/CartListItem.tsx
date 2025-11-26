@@ -1,5 +1,5 @@
-import { Link, NavLink } from "react-router-dom";
-import type { CartItem, Product } from "../../types/Product";
+import { Link } from "react-router-dom";
+import type { CartItem } from "../../types/Product";
 import "./CartListItem.css";
 import QtyChangeWidget from "./QtyChangeWidget/QtyChangeWidget";
 
