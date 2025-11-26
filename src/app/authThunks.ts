@@ -8,6 +8,7 @@ import {
   type LoginFormData,
   clearLoginFormData,
   loginSuccess,
+  sessionBegin,
 } from "./slices/authSlice";
 import axios from "axios";
 import { BACKEND_URL } from "../siteConfig";
@@ -21,14 +22,11 @@ export const registerUser = createAsyncThunk<
   async (formData: RegisterFormData, { dispatch, rejectWithValue }) => {
     try {
       dispatch(registerStart());
-      const response = await axios.post(
-        `${BACKEND_URL}users/register/`,
-        {
-          email: formData.email,
-          password: formData.password,
-          username: formData.username,
-        }
-      );
+      const response = await axios.post(`${BACKEND_URL}users/register/`, {
+        email: formData.email,
+        password: formData.password,
+        username: formData.username,
+      });
 
       if (!response.status) {
         throw new Error("Ошибка регистрации!");
@@ -56,13 +54,10 @@ export const loginUser = createAsyncThunk<
   async (formData: LoginFormData, { dispatch, rejectWithValue }) => {
     try {
       dispatch(registerStart());
-      const response = await axios.post(
-        `${BACKEND_URL}token/`,
-        {
-          username: formData.username,
-          password: formData.password,
-        }
-      );
+      const response = await axios.post(`${BACKEND_URL}token/`, {
+        username: formData.username,
+        password: formData.password,
+      });
 
       if (!response.status) {
         throw new Error("Ошибка входа!");
@@ -73,7 +68,7 @@ export const loginUser = createAsyncThunk<
           accessToken: data.access,
           refreshToken: data.refresh,
           username: formData.username,
-          isUserAdmin: data.is_admin
+          isUserAdmin: data.is_admin,
         })
       );
       dispatch(clearLoginFormData({}));
@@ -84,6 +79,36 @@ export const loginUser = createAsyncThunk<
         return rejectWithValue(err.message);
       }
       return rejectWithValue("Неизвестная ошибка");
+    }
+  }
+);
+
+interface sessionBeginArg {
+  token: string;
+}
+
+export const sessionBeginThunk = createAsyncThunk<void, sessionBeginArg>(
+  "auth/sessionBegin",
+  async ({ token }: sessionBeginArg, { dispatch }) => {
+    try {
+      dispatch(registerStart());
+      const response = await axios.get(`${BACKEND_URL}user/by-token/`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!response.status) {
+        throw new Error("Ошибка получение username!");
+      }
+      const data = await response.data;
+      dispatch(
+        sessionBegin({ username: data.username, isUserAdmin: data.is_admin })
+      );
+      dispatch(clearLoginFormData({}));
+      
+    } catch (err) {
+      if (err instanceof Error) {
+        dispatch(registerFailure(err.message));
+      }
     }
   }
 );

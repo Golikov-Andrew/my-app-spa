@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 export interface RegisterFormData {
   username: string;
@@ -10,6 +10,11 @@ export interface RegisterFormData {
 export interface LoginFormData {
   username: string;
   password: string;
+}
+
+interface sessionBeginPayload {
+  username: string;
+  isUserAdmin: boolean;
 }
 
 export interface authState {
@@ -62,7 +67,7 @@ export const authSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
       state.isUserAdmin = action.payload.isUserAdmin;
-      localStorage.setItem('token', action.payload.accessToken);
+      localStorage.setItem("token", action.payload.accessToken);
     },
     registerFailure: (state, action) => {
       state.error = action.payload;
@@ -94,12 +99,18 @@ export const authSlice = createSlice({
     setRedirectToAccount: (state, action) => {
       state.isRedirectToAccount = action.payload;
     },
-    logoutUser: (state, action) => {
-      localStorage.removeItem('token');
+    logoutUser: (state) => {
+      localStorage.removeItem("token");
       state.username = null;
       state.accessToken = null;
       state.refreshToken = null;
       state.isRedirectToLogin = true;
+    },
+    sessionBegin: (state, action: PayloadAction<sessionBeginPayload>) => {
+      state.username = action.payload.username
+      state.isUserAdmin = action.payload.isUserAdmin;
+      state.accessToken = localStorage.getItem('token');
+      state.isRedirectToAccount = true;
     },
   },
 });
@@ -115,6 +126,7 @@ export const {
   setRedirectToLogin,
   setRedirectToAccount,
   logoutUser,
-  loginSuccess
+  loginSuccess,
+  sessionBegin
 } = authSlice.actions;
 export default authSlice.reducer;

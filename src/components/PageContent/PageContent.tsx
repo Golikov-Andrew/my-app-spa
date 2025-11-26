@@ -43,9 +43,9 @@ function PageContent({
           <Route path="wishlist" element={<PrivateRoute><WishList /></PrivateRoute>} />
           <Route path="cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
           <Route path="orders" element={<PrivateRoute><Orders /></PrivateRoute>} />
-          <Route path="admin/orders" element={<PrivateRoute><AdminOrders /></PrivateRoute>} />
-          <Route path="admin/shop" element={<PrivateRoute><AdminShop /></PrivateRoute>} />
-          <Route path="admin/products" element={<PrivateRoute><AdminProducts page={currentCatalogPage} switchCatalogPage={switchCatalogPage} /></PrivateRoute>} />
+          <Route path="admin/orders" element={<PrivateRoute isAdminPath={true}><AdminOrders/></PrivateRoute>} />
+          <Route path="admin/shop" element={<PrivateRoute isAdminPath={true}><AdminShop /></PrivateRoute>} />
+          <Route path="admin/products" element={<PrivateRoute isAdminPath={true}><AdminProducts page={currentCatalogPage} switchCatalogPage={switchCatalogPage} /></PrivateRoute>} />
           <Route path="order/:id" element={<PrivateRoute><OrderPage /></PrivateRoute>} />
         </Routes>
       </div>

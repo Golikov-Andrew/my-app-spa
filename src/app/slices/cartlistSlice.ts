@@ -108,6 +108,9 @@ export const cartlistSlice = createSlice({
       state.deliveryComment = "";
       state.isOrderPaid = false;
     },
+    clearCart: (state) => {
+      state.products = [];
+    },
   },
 });
 
@@ -118,6 +121,7 @@ export const {
   setCartItemQty,
   setNewOrderFormTextData,
   setNewOrderFormBooleanData,
-  resetNewOrderForm
+  resetNewOrderForm,
+  clearCart
 } = cartlistSlice.actions;
 export default cartlistSlice.reducer;

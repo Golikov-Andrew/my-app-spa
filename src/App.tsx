@@ -8,15 +8,21 @@ import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import { getShopDetails } from "./app/shopThunks";
 import { useEffect } from "react";
+import { sessionBegin } from "./app/slices/authSlice";
+import { sessionBeginThunk } from "./app/authThunks";
 
 function App() {
   const currentCatalogPage = useAppSelector(
     (state: RootState) => state.catalog.currentCatalogPage
   );
   const shopTitle = useAppSelector((state: RootState) => state.shop.title);
-  
+  const username = useAppSelector((state: RootState) => state.auth.username);
 
   const dispatch = useAppDispatch();
+  const token = localStorage.getItem("token");
+  if (token && username === null) {
+    dispatch(sessionBeginThunk({ token }));
+  }
 
   useEffect(() => {
     dispatch(getShopDetails({ shopId: 1 }));
