@@ -10,7 +10,7 @@ import {
   loginSuccess,
   sessionBegin,
 } from "./slices/authSlice";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { BACKEND_URL } from "../siteConfig";
 
 export const registerUser = createAsyncThunk<
@@ -36,8 +36,26 @@ export const registerUser = createAsyncThunk<
       dispatch(clearRegisterFormData({}));
       return true;
     } catch (err) {
-      if (err instanceof Error) {
-        dispatch(registerFailure(err.message));
+      if (err instanceof AxiosError && err.status === 400) {
+        // debugger;
+        if (
+          err.response?.data?.username
+        ) {
+          dispatch(
+            registerFailure(
+              "Ошибка регистрации! Клиент с таким ником уже зарегистрирован"
+            )
+          );
+        } else if (err.response?.data?.password) {
+          dispatch(
+            registerFailure(
+              "Ошибка регистрации! пароль должен иметь не менее 8-и символов, буквы и цифры"
+            )
+          );
+        } else {
+          dispatch(registerFailure("Ошибка при регистрации!"));
+        }
+
         return rejectWithValue(err.message);
       }
       return rejectWithValue("Неизвестная ошибка");
@@ -74,8 +92,10 @@ export const loginUser = createAsyncThunk<
       dispatch(clearLoginFormData({}));
       return true;
     } catch (err) {
-      if (err instanceof Error) {
-        dispatch(registerFailure(err.message));
+      if (err instanceof AxiosError && err.status === 401) {
+        dispatch(
+          registerFailure("Ошибка авторизации! Неверный логин или пароль")
+        );
         return rejectWithValue(err.message);
       }
       return rejectWithValue("Неизвестная ошибка");
@@ -104,7 +124,6 @@ export const sessionBeginThunk = createAsyncThunk<void, sessionBeginArg>(
         sessionBegin({ username: data.username, isUserAdmin: data.is_admin })
       );
       dispatch(clearLoginFormData({}));
-      
     } catch (err) {
       if (err instanceof Error) {
         dispatch(registerFailure(err.message));
